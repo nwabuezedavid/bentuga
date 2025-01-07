@@ -1,0 +1,197 @@
+
+{% extends "./index.html" %}
+{% load static  %}
+
+
+{% block content %}
+<style>
+  
+
+/* Form Wrapper */
+.contact-wrapper {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Form Heading */
+.form-heading h4 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.form-heading p {
+    margin: 0 0 20px;
+    color: #777;
+    font-size: 1rem;
+}
+
+/* Form Grid */
+.form-grid {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Labels and Inputs */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+/* Submit Button */
+.form-submit button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-submit button:hover {
+    background-color: #0056b3;
+}
+
+/* Consent Section */
+.consent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.consent label a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.consent label a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-grid {
+        flex-direction: column;
+    }
+}
+</style>
+<div class="contact-wrapper">
+    <form id="contact-form" method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <div class="form-heading">
+            <h4>Contact Us</h4>
+            <p>We are here to help!</p>
+        </div>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <div class="form-group">
+            {{ form.subject.label_tag }}
+            {{ form.subject }}
+        </div>
+
+        <div class="form-group">
+            {{ form.message.label_tag }}
+            {{ form.message }}
+        </div>
+
+        <div class="form-group file-upload">
+            {{ form.files.label_tag }}
+            <div style="width: 100%; background-color: #777; border-radius: 20%; border: 1px solid white;">
+
+                {{ form.files }}
+            </div>
+        </div>
+        <div class="form-group file-upload hidden" >
+           IP Address
+            <div style="width: 100%; background-color: #777; border-radius: 20%; border: 1px solid white;">
+
+              <input type="text" id="ip" name="ip" value="">
+            </div>
+            <script>
+                async function getUserIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        console.log('User IP Address:', data.ip);
+        document.getElementById('ip').value = data.ip;
+    } catch (error) {
+        console.error('Error fetching IP address:', error);
+        return null;
+    }
+}
+getUserIP()
+// Example usage
+ 
+
+            </script>
+        </div>
+
+       
+        {% if messages %}
+        {% for message in messages %}
+        <div class="form-errors my-3 bg-red-500 text-white rounded p-2"  onclick="this.remove()">
+            {{ message}}
+        </div>
+{% endfor %}
+{% endif %}
+        <div class="form-submit">
+            <button type="submit">Send now</button>
+        </div>
+        <span class="ml-2">By clicking the “Send now” button you agree to our <a href="#">Terms and Conditions</a>.</span>
+        
+    </form>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://bentuga.ofshoer.com/pages/apply/simple-forms/css/simple-forms.css">
+{% endblock content %}
