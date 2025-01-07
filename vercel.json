@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "elocoin/wsgi.py",
+        "src": "Bentuga/wsgi.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "elocoin/wsgi.py"
+        "dest": "Bentuga/wsgi.py"
       }
     ]
   }
