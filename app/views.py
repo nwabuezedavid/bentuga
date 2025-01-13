@@ -1,7 +1,8 @@
 from django.shortcuts import render
-
+from vercel_blob import *
 # Create your views here.
 from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import render,redirect
 from app.models import *
 from django.contrib.auth.decorators import login_required
@@ -75,20 +76,56 @@ def contact(request):
     }
     
     return render (request, "home/contact.html",con)
+from .use import *
+
+def ss(request):
+    if request.method == 'POST':
+        if 'files' in request.FILES:
+            uploaded_file = request.FILES['files']
+            print(uploaded_file)
+            try:
+                # Upload the file to Vercel Blob Storage
+                blob_url = upload_file_to_blob(uploaded_file, uploaded_file.name)
+                print(blob_url)  # Log the blob URL for debugging
+            except Exception as e:
+                # Handle exceptions gracefully
+                print(f"Error uploading file: {e}")
+        else:
+            print("No file uploaded.")
+    
+    # Fetch additional context data (e.g., `siteedit` instance)
+    con = {
+        "site": siteedit.objects.get(idx=1),
+    }
+
+    # Render the template with the context
+    return render(request, "home/dd.html", con)
+
+
+ 
+ 
 def qoute(request):
     statue = None
     if request.method == 'POST':
-        form = ContactForm(request.POST, request.FILES)
+        form = ContactForm(request.POST)
         if form.is_valid():
+            uploaded_file = request.FILES['files']
+            blob_url = upload_file_to_blob(uploaded_file, uploaded_file.name)
+            print(blob_url)
+            # Retrieve and save form data
             ip_address = request.POST.get('ip')
             form.instance.ip_address = ip_address
+            form.instance.files = blob_url
             form.save()
+
             email = form.cleaned_data['email']
             phone = form.cleaned_data['phone']
             message = form.cleaned_data['message']
-            files = form.cleaned_data['files']
             name = form.cleaned_data['name']
             subject = form.cleaned_data['subject']
+            sitex = siteedit.objects.get(idx=1)
+
+            # Prepare context for email
              
             sitex=siteedit.objects.get(idx=1)
             statue = messages.info( request,'Your message has been sent!')
@@ -96,7 +133,7 @@ def qoute(request):
                               'site':sitex,
                               'email':email,
                               'phone':phone,
-                              'files':files,
+                              'files':blob_url,
                               'subject':subject,
                               'message':message,
                               'name':name,
@@ -137,3 +174,17 @@ def email_sending(request,tempname,context,subjects,to):
     mas.attach_alternative(tos, 'text/html')
     mas.send()
  
+ 
+ 
+ 
+import os
+from django.core.files.storage import FileSystemStorage
+
+# Use /tmp directory for temporary file storage
+temp_storage = FileSystemStorage(location='/tmp')
+
+def handle_file_upload(uploaded_file):
+    file_path = os.path.join(temp_storage.location, uploaded_file.name)
+    with open(file_path, 'wb+') as destination:
+        for chunk in uploaded_file.chunks():
+            destination.write(chunk)

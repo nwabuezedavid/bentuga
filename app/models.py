@@ -35,7 +35,7 @@ class ContactMessage(models.Model):
         ('Other', 'Other'),
     ])
     message = models.TextField()
-    files = models.FileField(upload_to='contact_files/', blank=True, null=True)
+    files = models.TextField( blank=True, null=True)
     consent = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
 

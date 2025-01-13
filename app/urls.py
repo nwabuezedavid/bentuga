@@ -14,6 +14,7 @@ urlpatterns = [
     path("capital/",capital, name="capital"),
     path("contact/",contact, name="contact"),
     path("qoute/",qoute, name="qoute"),
+    path("ss/",ss, name="ss"),
     
 ]
 
