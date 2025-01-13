@@ -91,7 +91,6 @@ def qoute(request):
             subject = form.cleaned_data['subject']
              
             sitex=siteedit.objects.get(idx=1)
-            print(sitex.owneremail )
             statue = messages.info( request,'Your message has been sent!')
             conx={
                               'site':sitex,
