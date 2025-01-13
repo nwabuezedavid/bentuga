@@ -1,6 +1,6 @@
-EMAIL_HOST = 'nexusinvestmenttrade.com'
+EMAIL_HOST = 'chestburgbank.com'
  
-EMAIL_HOST_USER = "admin@nexusinvestmenttrade.com" 
+EMAIL_HOST_USER = "support@chestburgbank.com" 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = "nwabueze666$" 
 EMAIL_PORT = 465 
