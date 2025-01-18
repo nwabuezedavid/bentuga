@@ -106,16 +106,21 @@ def ss(request):
  
 def qoute(request):
     statue = None
+    blob_url = None
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        if form.is_valid():
-            uploaded_file = request.FILES['files']
-            blob_url = upload_file_to_blob(uploaded_file, uploaded_file.name)
-            print(blob_url)
+        if form.is_valid(): 
+            try :
+                uploaded_file = request.FILES['files'] or None 
+                if uploaded_file:
+                    blob_url = upload_file_to_blob(uploaded_file, uploaded_file.name)
+                form.instance.files = blob_url or None
+            except Exception as e:
+                print(f"Error uploading file: {e}")
             # Retrieve and save form data
+            print(blob_url)
             ip_address = request.POST.get('ip')
             form.instance.ip_address = ip_address
-            form.instance.files = blob_url
             form.save()
 
             email = form.cleaned_data['email']
@@ -133,7 +138,7 @@ def qoute(request):
                               'site':sitex,
                               'email':email,
                               'phone':phone,
-                              'files':blob_url,
+                              'files':blob_url or None,
                               'subject':subject,
                               'message':message,
                               'name':name,
