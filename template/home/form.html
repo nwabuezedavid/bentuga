@@ -179,8 +179,9 @@ getUserIP()
        
         {% if messages %}
         {% for message in messages %}
-        <div class="form-errors my-3 bg-red-500 text-white rounded p-2"  onclick="this.remove()">
+        <div class="form-errors my-3 bg-green-500 text-white rounded p-2"  onclick="this.remove()">
             {{ message}}
+            <span class="close-button">&times;</span>
         </div>
 {% endfor %}
 {% endif %}
