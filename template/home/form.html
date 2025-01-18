@@ -4,6 +4,20 @@
 
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if messages %}
+{% for message in messages %}
+
+<script>
+Swal.fire({
+title: '{{ message.tags|capfirst }}!',
+text: '{{ message }}',
+icon: '{{ message.tags}}',
+confirmButtonText: 'close'
+})
+</script>
+{% endfor %}
+{% endif %}     
 <style>
   
 

@@ -133,7 +133,7 @@ def qoute(request):
             # Prepare context for email
              
             sitex=siteedit.objects.get(idx=1)
-            statue = messages.info( request,'Your message has been sent!')
+            statue = messages.success( request,'Your message has been sent!')
             conx={
                               'site':sitex,
                               'email':email,
