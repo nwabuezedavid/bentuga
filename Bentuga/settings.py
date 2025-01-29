@@ -1,11 +1,20 @@
-EMAIL_HOST = 'bentugaltd.com'
- 
-EMAIL_HOST_USER = "admin@bentugaltd.com" 
+# EMAIL_HOST = 'bentugaltd.com'
+  
+# EMAIL_HOST_USER = "admin@bentugaltd.com" 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST_PASSWORD = "nwabueze666$" 
+# EMAIL_PORT = 465 
+# EMAIL_USE_SSL = True 
+EMAIL_HOST = 'chestburgbank.com'
+  
+EMAIL_HOST_USER = "support@chestburgbank.com" 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = "nwabueze666$" 
 EMAIL_PORT = 465 
 EMAIL_USE_SSL = True 
 import os
+EMAIL_TIMEOUT = 30  # Timeout in seconds
+
 
 from pathlib import Path
 
