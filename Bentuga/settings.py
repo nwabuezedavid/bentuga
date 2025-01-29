@@ -1,6 +1,6 @@
-EMAIL_HOST = 'chestburgbank.com'
+EMAIL_HOST = 'bentugaltd.com'
  
-EMAIL_HOST_USER = "support@chestburgbank.com" 
+EMAIL_HOST_USER = "admin@bentugaltd.com" 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = "nwabueze666$" 
 EMAIL_PORT = 465 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'Bentuga.wsgi.application'
 # }
 import  os 
 from urllib.parse import urlparse
-tmpPostgres = urlparse('postgresql://cocliendb_owner:PEdhqXkH3U0n@ep-icy-shadow-a5lbkfnm.us-east-2.aws.neon.tech/cocliendb?sslmode=require')
+tmpPostgres = urlparse('postgresql://neondb_owner:HFO5Ll3mdCve@ep-aged-pine-a8xlfdw8.eastus2.azure.neon.tech/neondb?sslmode=require')
 
 DATABASES = {
     'default': {
