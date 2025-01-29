@@ -93,7 +93,7 @@
                             <a href="tel:44789289524329">{{site.phone}}</a>
                         </li>
                         <li>
-                            <a href="mailto:info@ofshoer.com"><span class="__cf_email__">{{site.email}}</span></a>
+                            <a href="mailto:{{site.email}}"><span class="__cf_email__">{{site.email}}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -128,7 +128,7 @@
                 <div class="main-responsive-menu">
                     <div style="background-color:white !important" class=" ">
                         <a href="/">
-                            <img style="background-color:white !important; width: 75%; height:45px" src="{{site.logo}}" alt="Bentuga">
+                            <img style="background-color:white !important; width: 75%; height:45px" src="{% static 'images/logo.png' %}" alt="Bentuga">
                         </a>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-md navbar-light">
                     <a class="navbar-brand" href="/">
-                        <img style="width: 150%; height:60px" src="{{site.logo}}" alt="https://bentuga.ofshoer.com/">
+                        <img style="width: 150%; height:60px" src="{% static 'images/logo.png' %}" alt="https://bentuga.ofshoer.com/">
                     </a>
                     <div class="navbar-list">
                         <ul>
