@@ -1,6 +1,6 @@
 EMAIL_HOST = 'zeqpay.com'
   
-EMAIL_HOST_USER = "bentugaltd@zeqpay.com" 
+EMAIL_HOST_USER = "bentugaltd@seawavelogs.com" 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST_PASSWORD = "nwabueze666$" 
 EMAIL_PORT = 465 
